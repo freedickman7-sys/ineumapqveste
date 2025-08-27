@@ -60,15 +60,8 @@ button:hover {
   transform-origin: center center;
 }
 
-#image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
+
+
 
 
 
