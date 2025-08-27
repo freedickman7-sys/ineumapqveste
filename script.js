@@ -66,14 +66,23 @@ function renderIcons() {
 
 // применяем трансформации
 function updateTransform() {
-  mapWrapper.style.transform = 
-    `translate(-50%, -50%) translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
+  mapImage.style.transform = `translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
 
-  // иконки должны оставаться "внизом"
-  document.querySelectorAll(".icon").forEach(el => {
-    el.style.transform = `scale(${scale}) rotate(${-rotation}deg)`;
+  // обновляем каждую иконку
+  document.querySelectorAll(".map-icon").forEach(icon => {
+    // позиция учитывает зум
+    const x = parseFloat(icon.dataset.x) * scale + posX + mapImage.offsetWidth / 2;
+    const y = parseFloat(icon.dataset.y) * scale + posY + mapImage.offsetHeight / 2;
+
+    icon.style.left = x + "px";
+    icon.style.top = y + "px";
+
+    // масштаб иконок — слабее (чтобы они не исчезали при отдалении)
+    const iconScale = Math.max(0.7, scale * 0.8); 
+    icon.style.transform = `translate(-50%, -50%) scale(${iconScale})`;
   });
 }
+
 
 // --- управление жестами ---
 // зум (щипок)
@@ -152,6 +161,7 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
 
 
 
