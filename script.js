@@ -13,26 +13,28 @@ const maps = [
   {
     image: "maps/map1.png",
     icons: [
-      { src: "icons/icon1.png", x: 200, y: 150 },
-      { src: "icons/icon2.png", x: 400, y: 300 },
-      { src: "icons/icon3.png", x: 600, y: 450 }
+      { src: "icons/icon4.png", x: 2600, y: 800 },
+      { src: "icons/icon2.png", x: 1300, y: 1000 },
+      { src: "icons/icon6.png", x: 1550, y: 1300 },
+      { src: "icons/icon8.png", x: 2280, y: 1000 }
     ]
   },
   {
     image: "maps/map2.png",
     icons: [
-      { src: "icons/icon1.png", x: 100, y: 100 },
-      { src: "icons/icon3.png", x: 500, y: 200 }
+      { src: "icons/icon0.png", x: 100, y: 100 },
+      { src: "icons/icon1.png", x: 500, y: 200 }
     ]
   },
   {
     image: "maps/map3.png",
-    icons: []
+    icons: [{ src: "icons/icon5.png", x: 500, y: 200 }]
   },
   {
     image: "maps/map4.png",
     icons: [
-      { src: "icons/icon2.png", x: 250, y: 300 }
+      { src: "icons/icon7.png", x: 250, y: 300 },
+      { src: "icons/icon3.png", x: 550, y: 700 }
     ]
   }
 ];
