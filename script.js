@@ -1,5 +1,5 @@
 let currentMap = 0;
-let scale = 0.7;
+let scale = 0.5;
 let rotation = 0;
 let posX = 0;
 let posY = 0;
@@ -41,7 +41,7 @@ const maps = [
 
 function setMap(index) {
   currentMap = index;
-  scale = 0.7;
+  scale = 0.5;
   rotation = 0;
   posX = 0;
   posY = 0;
@@ -152,6 +152,7 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
 
 
 
