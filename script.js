@@ -1,5 +1,5 @@
 let currentMap = 0;
-let scale = 3;
+let scale = 5;
 let rotation = 0;
 let posX = 0;
 let posY = 0;
@@ -41,7 +41,7 @@ const maps = [
 
 function setMap(index) {
   currentMap = index;
-  scale = 1;
+  scale = 5;
   rotation = 0;
   posX = 0;
   posY = 0;
@@ -77,7 +77,7 @@ function updateTransform() {
 
 // --- управление жестами ---
 // зум (щипок)
-let startDist = 0, startAngle = 0, startScale = 1, startRot = 0;
+let startDist = 0, startAngle = 0, startScale = 3, startRot = 0;
 
 mapWrapper.addEventListener("touchstart", e => {
   if (e.touches.length === 2) {
@@ -152,4 +152,5 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
 
