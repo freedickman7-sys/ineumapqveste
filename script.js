@@ -1,5 +1,5 @@
 let currentMap = 0;
-let scale = 5;
+let scale = 0.7;
 let rotation = 0;
 let posX = 0;
 let posY = 0;
@@ -41,7 +41,7 @@ const maps = [
 
 function setMap(index) {
   currentMap = index;
-  scale = 5;
+  scale = 0.7;
   rotation = 0;
   posX = 0;
   posY = 0;
@@ -99,7 +99,7 @@ mapWrapper.addEventListener("touchmove", e => {
     const dist = Math.hypot(dx, dy);
     const angle = Math.atan2(dy, dx);
 
-    scale = Math.min(4, Math.max(0.5, startScale * (dist / startDist)));
+    scale = Math.min(2, Math.max(0.1, startScale * (dist / startDist)));
     rotation = startRot + (angle - startAngle) * (180 / Math.PI);
 
     updateTransform();
@@ -152,5 +152,6 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
 
 
