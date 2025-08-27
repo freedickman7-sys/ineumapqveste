@@ -43,9 +43,10 @@ button:hover {
 }
 
 #map-image {
-  display: block;
-  max-width: none; /* чтобы трансформы работали как надо */
+  transform-origin: center center;  /* теперь зум и вращение идут из центра */
+  transition: transform 0.05s linear;
 }
+
 
 #icons-layer {
   position: absolute;
@@ -58,4 +59,16 @@ button:hover {
   height: 160px;
   transform-origin: center center;
 }
+
+#image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+
 
