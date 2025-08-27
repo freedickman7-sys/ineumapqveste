@@ -54,7 +54,8 @@ button:hover {
 }
 .icon {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 160px;
+  height: 160px;
   transform-origin: center center;
 }
+
