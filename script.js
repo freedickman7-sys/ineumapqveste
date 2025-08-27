@@ -1,5 +1,5 @@
 let currentMap = 0;
-let scale = 1;
+let scale = 3;
 let rotation = 0;
 let posX = 0;
 let posY = 0;
@@ -152,3 +152,4 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
