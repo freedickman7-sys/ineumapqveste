@@ -13,24 +13,24 @@ const maps = [
   {
     image: "maps/map1.png",
     icons: [
-      { src: "icons/icon4.png", x: 380, y: 250 },
-      { src: "icons/icon2.png", x: 300, y: 800 },
-      { src: "icons/icon6.png", x: 420, y: 695 },
-      { src: "icons/icon8.png", x: 300, y: 375 },
-      { src: "icons/icon7.png", x: 2900, y: 600 },
-      { src: "icons/icon3.png", x: 1800, y: 700 }
+      { src: "icons/icon4.png", x: 380, y: 250, label: "Симфония" },
+      { src: "icons/icon2.png", x: 300, y: 800, label: "Стишок" },
+      { src: "icons/icon6.png", x: 420, y: 695, label: "ДУЭЛЬ" },
+      { src: "icons/icon8.png", x: 300, y: 375, label: "Цифровой шифр" },
+      { src: "icons/icon7.png", x: 2900, y: 600, label: "Здоровый дух" },
+      { src: "icons/icon3.png", x: 1800, y: 700, label: "Меткий глаз" }
     ]
   },
   {
     image: "maps/map2.png",
     icons: [
-      { src: "icons/icon0.png", x: 1450, y: 420 },
-      { src: "icons/icon1.png", x: 410, y: 810 }
+      { src: "icons/icon0.png", x: 1450, y: 420, label: "Эхо эпохи" },
+      { src: "icons/icon1.png", x: 410, y: 810, label: "Игра сфинкса " }
     ]
   },
   {
     image: "maps/map3.png",
-    icons: [{ src: "icons/icon5.png", x: 280, y: 550 }]
+    icons: [{ src: "icons/icon5.png", x: 280, y: 550, label: "Рисование вслепую" }]
   }
 ];
 
@@ -49,13 +49,22 @@ function setMap(index) {
 function renderIcons() {
   iconsLayer.innerHTML = "";
   maps[currentMap].icons.forEach(icon => {
-    if (icon.x === 0 && icon.y === 0) return; // скрыть иконку
-    const el = document.createElement("img");
-    el.src = icon.src;
-    el.className = "icon";
-    el.style.left = icon.x + "px";
-    el.style.top = icon.y + "px";
-    iconsLayer.appendChild(el);
+    if (icon.x === 0 && icon.y === 0) return;
+    const wrapper = document.createElement("div");
+    wrapper.className = "icon";
+    wrapper.style.left = icon.x + "px";
+    wrapper.style.top = icon.y + "px";
+
+    const img = document.createElement("img");
+    img.src = icon.src;
+
+    const label = document.createElement("span");
+    label.className = "icon-label";
+    label.textContent = icon.label || "";
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(label);
+    iconsLayer.appendChild(wrapper);
   });
 }
 
