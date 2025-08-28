@@ -1,5 +1,5 @@
 let currentMap = 0;
-let scale = 0.5;
+let scale = 0.7;
 let rotation = 0;
 let posX = 0;
 let posY = 0;
@@ -13,35 +13,30 @@ const maps = [
   {
     image: "maps/map1.png",
     icons: [
-      { src: "icons/icon4.png", x: 2600, y: 800 },
-      { src: "icons/icon2.png", x: 1300, y: 1000 },
-      { src: "icons/icon6.png", x: 1550, y: 1300 },
-      { src: "icons/icon8.png", x: 2280, y: 1000 }
+      { src: "icons/icon4.png", x: 380, y: 250 },
+      { src: "icons/icon2.png", x: 300, y: 800 },
+      { src: "icons/icon6.png", x: 420, y: 695 },
+      { src: "icons/icon8.png", x: 300, y: 375 },
+      { src: "icons/icon7.png", x: 2900, y: 600 },
+      { src: "icons/icon3.png", x: 1800, y: 700 }
     ]
   },
   {
     image: "maps/map2.png",
     icons: [
-      { src: "icons/icon0.png", x: 100, y: 100 },
-      { src: "icons/icon1.png", x: 500, y: 200 }
+      { src: "icons/icon0.png", x: 1450, y: 420 },
+      { src: "icons/icon1.png", x: 410, y: 810 }
     ]
   },
   {
     image: "maps/map3.png",
-    icons: [{ src: "icons/icon5.png", x: 500, y: 200 }]
-  },
-  {
-    image: "maps/map4.png",
-    icons: [
-      { src: "icons/icon7.png", x: 250, y: 300 },
-      { src: "icons/icon3.png", x: 550, y: 700 }
-    ]
+    icons: [{ src: "icons/icon5.png", x: 280, y: 550 }]
   }
 ];
 
 function setMap(index) {
   currentMap = index;
-  scale = 0.5;
+  scale = 0.7;
   rotation = 0;
   posX = 0;
   posY = 0;
@@ -66,19 +61,24 @@ function renderIcons() {
 
 // применяем трансформации
 function updateTransform() {
+  // Ограничение перемещения (чтобы не уводили далеко карту)
+  const limit = 500; // пиксели
+  posX = Math.max(-limit, Math.min(limit, posX));
+  posY = Math.max(-limit, Math.min(limit, posY));
+
   mapWrapper.style.transform = 
     `translate(-50%, -50%) translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
 
-  // иконки должны оставаться "внизом"
+  // Иконки: при отдалении растут, при приближении уменьшаются
+  const iconScale = 1 - (scale * 0.6); // подстройка под мягкий эффект
   document.querySelectorAll(".icon").forEach(el => {
-    el.style.transform = `scale(${scale}) rotate(${-rotation}deg)`;
+    el.style.transform = `scale(${iconScale}) rotate(${-rotation}deg)`;
   });
 }
 
-
 // --- управление жестами ---
 // зум (щипок)
-let startDist = 0, startAngle = 0, startScale = 3, startRot = 0;
+let startDist = 0, startAngle = 0, startScale = 1, startRot = 0;
 
 mapWrapper.addEventListener("touchstart", e => {
   if (e.touches.length === 2) {
@@ -100,7 +100,8 @@ mapWrapper.addEventListener("touchmove", e => {
     const dist = Math.hypot(dx, dy);
     const angle = Math.atan2(dy, dx);
 
-    scale = Math.min(2, Math.max(0.1, startScale * (dist / startDist)));
+    // ограничение масштаба
+    scale = Math.min(1.5, Math.max(0.5, startScale * (dist / startDist)));
     rotation = startRot + (angle - startAngle) * (180 / Math.PI);
 
     updateTransform();
@@ -147,15 +148,9 @@ window.addEventListener("mousemove", e => {
   }
 });
 window.addEventListener("wheel", e => {
-  scale = Math.min(4, Math.max(0.5, scale + e.deltaY * -0.001));
+  scale = Math.min(1.5, Math.max(0.5, scale + e.deltaY * -0.001));
   updateTransform();
 });
 
 // загрузка первой карты
 setMap(0);
-
-
-
-
-
-
