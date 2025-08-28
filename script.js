@@ -70,10 +70,7 @@ function renderIcons() {
 
 // применяем трансформации
 function updateTransform() {
-  // Ограничение перемещения (чтобы не уводили далеко карту)
-  const limit = 1000; // пиксели
-  posX = Math.max(-limit, Math.min(limit, posX));
-  posY = Math.max(-limit, Math.min(limit, posY));
+
 
   mapWrapper.style.transform = 
     `translate(-80%, -30%) translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
@@ -163,6 +160,7 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
 
 
 
