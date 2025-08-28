@@ -1,14 +1,31 @@
-body {
+body { 
   margin: 0;
-  background: #111;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* фон */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("background.png") no-repeat center center;
+  background-size: cover;
+  filter: blur(8px); /* степень размытия */
+  z-index: -1; /* чтобы фон был под всем */
 }
 
 .controls {
   margin: 10px;
+  z-index: 10; /* чтобы кнопки были поверх */
 }
 
 button {
@@ -30,6 +47,7 @@ button:hover {
   overflow: hidden;
   position: relative;
   touch-action: none; /* важно для телефонов */
+  z-index: 1;
 }
 
 #map-wrapper {
@@ -42,24 +60,20 @@ button:hover {
   transform: translate(-50%, -50%) scale(1) rotate(0deg);
 }
 
-
-
+#map-image {
+  display: block;
+  max-width: none; /* чтобы трансформы работали как надо */
+}
 
 #icons-layer {
   position: absolute;
   top: 0;
   left: 0;
 }
+
 .icon {
   position: absolute;
   width: 160px;
   height: 160px;
   transform-origin: center center;
 }
-
-
-
-
-
-
-
