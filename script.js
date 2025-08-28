@@ -73,8 +73,7 @@ function updateTransform() {
 
 
   mapWrapper.style.transform = 
-    `translate(-80%, -30%) translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
-
+    `translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
   // Иконки: при отдалении растут, при приближении уменьшаются
   const iconScale = 1 - (scale * 0.6); // подстройка под мягкий эффект
   document.querySelectorAll(".icon").forEach(el => {
@@ -107,7 +106,7 @@ mapWrapper.addEventListener("touchmove", e => {
     const angle = Math.atan2(dy, dx);
 
     // ограничение масштаба
-    scale = Math.min(1.7, Math.max(0.5, startScale * (dist / startDist)));
+    scale = Math.min(1, Math.max(0.5, startScale * (dist / startDist)));
     rotation = startRot + (angle - startAngle) * (180 / Math.PI);
 
     updateTransform();
@@ -154,16 +153,9 @@ window.addEventListener("mousemove", e => {
   }
 });
 window.addEventListener("wheel", e => {
-  scale = Math.min(1.7, Math.max(0.5, scale + e.deltaY * -0.001));
+  scale = Math.min(1, Math.max(0.5, scale + e.deltaY * -0.001));
   updateTransform();
 });
 
 // загрузка первой карты
 setMap(0);
-
-
-
-
-
-
-
