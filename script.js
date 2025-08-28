@@ -76,7 +76,7 @@ function updateTransform() {
   posY = Math.max(-limit, Math.min(limit, posY));
 
   mapWrapper.style.transform = 
-    `translate(-80%, -80%) translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
+    `translate(-80%, -30%) translate(${posX}px, ${posY}px) scale(${scale}) rotate(${rotation}deg)`;
 
   // Иконки: при отдалении растут, при приближении уменьшаются
   const iconScale = 1 - (scale * 0.6); // подстройка под мягкий эффект
@@ -163,6 +163,7 @@ window.addEventListener("wheel", e => {
 
 // загрузка первой карты
 setMap(0);
+
 
 
 
